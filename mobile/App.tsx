@@ -7,7 +7,7 @@ import OnboardingNavigator from './src/navigation/OnboardingNavigator';
 import { store, RootState } from './src/store';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
-import { NavigationContainer, DarkTheme, DefaultTheme } from '@react-navigation/native';
+import { NavigationContainer, DarkTheme, DefaultTheme, LinkingOptions } from '@react-navigation/native';
 import { useColorScheme } from 'react-native';
 
 function AppContent() {
@@ -34,10 +34,35 @@ function AppContent() {
 
   if (!isReady) return null;
 
+  const linking: LinkingOptions<ReactNavigation.RootParamList> = {
+    prefixes: ['minmap://'],
+    config: {
+      screens: {
+        Root: {
+          screens: {
+            Home: 'home',
+            Shop: {
+              screens: {
+                ShopHome: 'shop',
+                Search: 'shop/search',
+                ProductDetail: 'shop/product/:id',
+              },
+            },
+            Learn: 'learn',
+            Community: 'community',
+            Profile: 'profile',
+          },
+        },
+        EditProfile: 'profile/edit',
+      },
+    },
+  };
+
   return (
     <NavigationContainer
       theme={isDark ? DarkTheme : DefaultTheme}
       initialState={initialState}
+      linking={linking}
       onStateChange={(state) => AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))}
     >
       {onboardingComplete ? <RootStack /> : <OnboardingNavigator />}
