@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { View, FlatList, Text, TouchableOpacity, StyleSheet, TextInput, Button } from 'react-native';
+import { useGetProductsQuery } from '../../services/productsApi';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import type { ShopStackParamList } from '../../navigation/ShopNavigator';
 
@@ -7,8 +8,9 @@ type Props = NativeStackScreenProps<ShopStackParamList, 'ShopHome'>;
 
 export default function ProductListScreen({ navigation }: Props) {
   const [filter, setFilter] = useState('');
-  const data = Array.from({ length: 20 }).map((_, i) => ({ id: String(i + 1), name: `Product ${i + 1}` }));
-  const filtered = filter ? data.filter((p) => p.name.toLowerCase().includes(filter.toLowerCase())) : data;
+  const { data, isLoading } = useGetProductsQuery();
+  const list = data ?? [];
+  const filtered = filter ? list.filter((p) => p.title.toLowerCase().includes(filter.toLowerCase())) : list;
 
   return (
     <View style={styles.container}>
@@ -21,10 +23,11 @@ export default function ProductListScreen({ navigation }: Props) {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <TouchableOpacity onPress={() => navigation.navigate('ProductDetail', { id: item.id })}>
-            <Text style={styles.item}>{item.name}</Text>
+            <Text style={styles.item}>{item.title}</Text>
           </TouchableOpacity>
         )}
         ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
+        ListEmptyComponent={<Text>{isLoading ? 'Loading...' : 'No products'}</Text>}
       />
     </View>
   );

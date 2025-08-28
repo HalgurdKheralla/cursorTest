@@ -9,6 +9,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useEffect, useState } from 'react';
 import { NavigationContainer, DarkTheme, DefaultTheme, LinkingOptions } from '@react-navigation/native';
 import { useColorScheme } from 'react-native';
+import { trackScreen } from './src/lib/analytics';
 
 function AppContent() {
   const colorScheme = useColorScheme();
@@ -63,7 +64,13 @@ function AppContent() {
       theme={isDark ? DarkTheme : DefaultTheme}
       initialState={initialState}
       linking={linking}
-      onStateChange={(state) => AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state))}
+      onStateChange={(state) => {
+        AsyncStorage.setItem(PERSISTENCE_KEY, JSON.stringify(state));
+        try {
+          const route = state?.routes?.[state.index ?? 0];
+          if (route) trackScreen(route.name);
+        } catch {}
+      }}
     >
       {onboardingComplete ? <RootStack /> : <OnboardingNavigator />}
     </NavigationContainer>
