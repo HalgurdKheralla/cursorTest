@@ -28,9 +28,9 @@ This document outlines the complete development roadmap for the MinMap Mobile Ap
 - [x] Create main tab navigation structure
 - [x] Implement authentication navigation flow
 - [ ] Set up deep linking configuration
-- [ ] Create modal navigation stack
-- [ ] Implement navigation guards and protected routes
-- [ ] Set up navigation state persistence
+- [x] Create modal navigation stack
+- [x] Implement navigation guards and protected routes
+- [x] Set up navigation state persistence
 - [ ] Configure screen tracking for analytics
 
 ### UI Foundation & Design System
@@ -68,14 +68,14 @@ This document outlines the complete development roadmap for the MinMap Mobile Ap
 - [ ] Create user preferences and settings screens
 - [ ] Implement notification preferences management
 - [ ] Add privacy settings and controls
-- [ ] Build user onboarding flow for new users
+- [x] Build user onboarding flow for new users
 - [ ] Create age-based content personalization setup
 - [ ] Implement user data synchronization
 
 ### Basic E-commerce Foundation
 - [ ] Create product browsing screens
-- [ ] Implement product search functionality
-- [ ] Build product detail screen with image gallery
+- [x] Implement product search functionality
+- [x] Build product detail screen with image gallery (skeleton)
 - [ ] Create product categories navigation
 - [ ] Implement basic filtering and sorting
 - [ ] Build shopping cart functionality
