@@ -14,8 +14,8 @@ This document outlines the complete development roadmap for the MinMap Mobile Ap
 - [ ] Configure development environment (Android Studio, Xcode)
 - [x] Set up package.json with all required dependencies
 - [x] Configure TypeScript with strict mode settings
-- [ ] Set up ESLint and Prettier for React Native
-- [ ] Configure Husky and lint-staged for pre-commit hooks
+- [x] Set up ESLint and Prettier for React Native
+- [x] Configure Husky and lint-staged for pre-commit hooks
 - [x] Set up development scripts and build configurations
 - [x] Configure environment variables for different environments
 - [ ] Set up debugging tools (Flipper, Reactotron)
@@ -26,7 +26,7 @@ This document outlines the complete development roadmap for the MinMap Mobile Ap
 - [ ] Set up RTK Query for API communication
 - [x] Configure React Navigation with TypeScript
 - [x] Create main tab navigation structure
-- [ ] Implement authentication navigation flow
+- [x] Implement authentication navigation flow
 - [ ] Set up deep linking configuration
 - [ ] Create modal navigation stack
 - [ ] Implement navigation guards and protected routes
@@ -86,8 +86,8 @@ This document outlines the complete development roadmap for the MinMap Mobile Ap
 
 ### API Integration Foundation
 - [x] Set up Supabase client configuration
-- [ ] Create API service layer architecture
-- [ ] Implement authentication API calls
+- [x] Create API service layer architecture
+- [x] Implement authentication API calls
 - [ ] Build user profile API integration
 - [ ] Create product catalog API integration
 - [ ] Implement error handling for API calls

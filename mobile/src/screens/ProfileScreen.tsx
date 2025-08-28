@@ -1,10 +1,27 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, Button } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import type { RootState } from '../store';
+import { signOut } from '../store/slices/authSlice';
+import { supabase } from '../lib/supabase';
 
 export default function ProfileScreen() {
+  const dispatch = useDispatch();
+  const email = useSelector((s: RootState) => s.auth.userEmail);
+
+  const handleLogout = async () => {
+    try {
+      await supabase.auth.signOut();
+    } finally {
+      dispatch(signOut());
+    }
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Profile</Text>
+      {email ? <Text style={{ marginBottom: 12 }}>{email}</Text> : null}
+      <Button title="Logout" onPress={handleLogout} />
     </View>
   );
 }
