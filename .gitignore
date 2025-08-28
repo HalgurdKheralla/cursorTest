@@ -1,0 +1,18 @@
+# OS / Editor
+.DS_Store
+Thumbs.db
+
+# Node
+node_modules/
+.npm/
+
+# Expo/React Native
+.expo/
+.expo-shared/
+*.log
+
+# Archives
+*.tar.gz
+
+# Large core dumps
+core
